@@ -87,13 +87,14 @@ startButton.addEventListener("click", () => {
 //Handling stop button functionality
 stopButton.addEventListener("click", ()=>{
     if(stateOfWatch === "Running"){
+        startButton.innerText = "resume";
         stop();
         lapCount++;
         let hrInfo = parseInt(document.getElementById("hr").innerText);
         let minInfo = parseInt(document.getElementById("min").innerText);
         let secInfo = parseInt(document.getElementById("sec").innerText);
         const li = document.createElement('li');
-        li.innerHTML = `<li> Lap Number ${lapCount} at ${hrInfo}hr:${minInfo}min:${secInfo}sec</li>`;
+        li.innerHTML = `Lap Number ${lapCount} at ${hrInfo}hr:${minInfo}min:${secInfo}sec`;
         lapList.append(li);
     }else{
         extraMessageSender("timer is not running");
@@ -107,7 +108,8 @@ resetButton.addEventListener("click", () => {
     updateElement("hr", 0);
     //restting Lap List
     lapCount = 0;
-    lapList.innerHTML = "Lap List";
+    lapList.innerHTML = `<h3>Lap List</h3>`;
+    startButton.innerText = "start";
     stop();
     //resetting state of Watch
     stateOfWatch = "Not Running"
